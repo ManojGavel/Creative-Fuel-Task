@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./form.module.css";
+import { useContextReducer } from "../../Context/Context";
+import { useFormik } from "formik";
+import { FormdataSchema } from "../Schema";
 export default function Form() {
+  const [state, dispatch] = useContextReducer();
   const [testType, setTestType] = useState("");
-  const [testName, setTestName] = useState("");
-  const [testerEmail, setTesterEmail] = useState("");
-  const [testerPhone, setTesterPhone] = useState("");
-  const [alternateMobileNo, setAlternateMobileNo] = useState("");
   const [testTypeList, setTestTypeList] = useState([
     "PHP",
     "NODE JS",
@@ -15,32 +15,6 @@ export default function Form() {
   const [isTestTypeListAdd, setTestTypeListAdd] = useState(false);
   const [warning, setWarning] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [selectedTestType, setSelectedTestType] = useState("");
-  
-  const isSubmitButtonActive = testerPhone.length===9 && testName.length>3 && testerEmail.includes 
-
-  const alternateMobileNoChangeHandler = (val) => {
-    if (val.target.value.length > 10) {
-        setAlternateMobileNo(val.target.value);
-        } else {
-            setWarning({
-                type: "warning",
-                message: "phone no is wrong",
-            });
-        }
-    };
-
-  const emailChangeHandler = (val) => {
-    setTesterEmail(val.target.value);
-    if (val.target.value.includes("@") && val.target.value.includes(".com")) {
-      setTesterEmail(val.target.value);
-    } else {
-      setWarning({
-        type: "warning",
-        message: "email is wrong",
-      });
-    }
-  };
 
   const addTestType = (val) => {
     if (testTypeList.includes(val.target.value.toUpperCase())) {
@@ -73,30 +47,15 @@ export default function Form() {
     }
     setAddTestBtnCliked(true);
   };
-  const setTesterPhoneNo = (val) => {
-    if (val.target.value.length < 10) {
-      setTesterPhone(val.target.value);
-    } else {
-      setWarning({
-        type: "warning",
-        message: "phone no is wrong",
-      });
-    }
-    console.log(testerPhone)
-  };
-  React.useEffect(() => {
-    // console.log("testType", testType);
-    // console.log("testName", testName);
-    // console.log("testerEmail", testerEmail);
-    // console.log("testerPhone", testerPhone);
-    // console.log("alternateMobileNo", alternateMobileNo);
-    // console.log("testTypeList", testTypeList);
-    // if (testTypeList.includes(testType)) {
-    //   console.log("testTypeList", testTypeList);
-    // } else {
-    //   console.log("testTypeList", testTypeList);
-    // }
-    // console.log("isSubmitButtonActive" ,isSubmitButtonActive)
+
+  const ErrorWarning = () => (
+    <div className={`${classes.errorWarning}`}>
+      <span>{warning.type} !</span>
+      <span>{warning.message}</span>
+    </div>
+  );
+
+  useEffect(() => {
     if (warning) {
       setTimeout(() => {
         setWarning(false);
@@ -106,40 +65,65 @@ export default function Form() {
         clearTimeout();
       };
     }
-  }, []);
+  }, [warning]);
 
-  const ErrorWarning = () => (
-    <div className={`${classes.errorWarning}`}>
-      <span>{warning.type} !</span>
-      <span>{warning.message}</span>
-    </div>
-  );
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        Test_name: "",
+        Test_type: "PHP",
+        Tester_email: "",
+        Tester_phone: "",
+        Alternate_mobile_no: "",
+      },
+      validationSchema: FormdataSchema,
+      onSubmit: (values) => {
+        dispatch({
+          type: "ADD_TABLE_VALUES",
+          payload: {
+            id: Math.random().toString(36).substr(2, 9),
+            ...values,
+            date: new Date().toLocaleDateString(),
+            lastUpdationDate: "",
+          },
+        });
+        values.Test_name = "";
+        values.Test_type = "PHP";
+        values.Tester_email = "";
+        values.Tester_phone = "";
+        values.Alternate_mobile_no = "";
+      },
+    });
 
   return (
     <div>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <div className={classes.warning}>{warning && <ErrorWarning />}</div>
-
         <h1>Form</h1>
         <div className={classes.Row}>
           <div className={classes.rowCh}>
             <label htmlFor="test_name">Test Name *</label>
             <input
-              onChange={(val) => {
-                setTestName(val.target.value);
-              }}
+              name="Test_name"
+              onChange={handleChange}
+              value={values.Test_name}
+              onBlur={handleBlur}
               type="text"
               id="test_name"
               className={classes.input}
             />
+            {errors.Test_name && touched.Test_name ? (
+              <p className={classes.inputError}>{errors.Test_name}</p>
+            ) : null}
           </div>
           <div className={classes.rowCh}>
             <label htmlFor="test_type">Test Type</label>
             <div className={classes.testType}>
               <select
-                onChange={(val) => {
-                  setSelectedTestType(val.target.value);
-                }}
+                name="Test_type"
+                defaultValue="PHP"
+                onChange={handleChange}
+                onBlur={handleBlur}
                 id="test_type"
               >
                 {testTypeList.map((testType, i) => (
@@ -155,6 +139,7 @@ export default function Form() {
                   type="text"
                   placeholder="Add test type"
                   onChange={addTestType}
+                  value={testType}
                 />
               )}
               <div>
@@ -175,31 +160,53 @@ export default function Form() {
           <div className={classes.rowCh}>
             <label htmlFor="tester_email">Tester email *</label>
             <input
-              onChange={emailChangeHandler}
+              name="Tester_email"
+              onChange={handleChange}
+              onBlur={handleBlur}
               id="tester_email"
               type="email"
+              value={values.Tester_email}
             />
+            {errors.Tester_email && touched.Tester_email ? (
+              <p className={classes.inputError}>{errors.Tester_email}</p>
+            ) : null}
           </div>
           <div className={classes.rowCh}>
             <label htmlFor="tester_phone">Tester phone *</label>
             <input
-              onChange={setTesterPhoneNo}
-            //   pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+              name="Tester_phone"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.Tester_phone}
               title="Please enter valid phone no"
-            //   maxLength={`10`}
               id="tester_phone"
               type="tel"
             />
+            {errors.Tester_phone && touched.Tester_phone ? (
+              <p className={classes.inputError}>{errors.Tester_phone}</p>
+            ) : null}
           </div>
         </div>
         <div className={classes.Row}>
           <div className={classes.rowCh}>
-            <label  htmlFor="Alternate_mobile_no">Alternate mobile no</label>
-            <input maxLength={`10`}  onChange={alternateMobileNoChangeHandler} type="tel" />
+            <label htmlFor="Alternate_mobile_no">Alternate mobile no</label>
+            <input
+              name="Alternate_mobile_no"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.Alternate_mobile_no}
+              type="tel"
+              id="Alternate_mobile_no"
+            />
+            {errors.Alternate_mobile_no && touched.Alternate_mobile_no ? (
+              <p className={classes.inputError}>{errors.Alternate_mobile_no}</p>
+            ) : null}
           </div>
         </div>
         <div>
-          <button disabled={!isSubmitButtonActive}  className={classes.button}>Submmit</button>
+          <button disabled={!errors} className={classes.button}>
+            Submmit
+          </button>
         </div>
       </form>
     </div>

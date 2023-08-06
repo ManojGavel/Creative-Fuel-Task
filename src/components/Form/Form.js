@@ -42,6 +42,10 @@ export default function Form() {
           });
       }
     } else {
+      setWarning({
+        type: "success",
+        message: "test type added successfully",
+      });
       setTestTypeList((testTypeList) => [...testTypeList, testType]);
       setTestType("");
     }
@@ -49,9 +53,17 @@ export default function Form() {
   };
 
   const ErrorWarning = () => (
-    <div className={`${classes.errorWarning}`}>
-      <span>{warning.type} !</span>
-      <span>{warning.message}</span>
+    <div
+      className={`alert alert-${warning.type} alert-dismissible fade show`}
+      role="alert"
+    >
+      <strong>{warning.type}!</strong> {warning.message}
+      <button
+        type="button"
+        className="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
     </div>
   );
 
@@ -98,8 +110,8 @@ export default function Form() {
   return (
     <div>
       <form className={classes.form} onSubmit={handleSubmit}>
+        <h1>Php Test Mast</h1>
         <div className={classes.warning}>{warning && <ErrorWarning />}</div>
-        <h1>Form</h1>
         <div className={classes.Row}>
           <div className={classes.rowCh}>
             <label htmlFor="test_name">Test Name *</label>

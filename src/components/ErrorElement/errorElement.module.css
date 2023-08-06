@@ -1,0 +1,22 @@
+.errorElement{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    place-content: center;
+}
+.errorElement>h1{
+    font-size: calc(0.5rem + 3vw);
+    color: #fff;
+    text-align: center;
+    font-weight: 900;
+}
+.errorElement>p{
+    font-size: calc(0.5rem + 2vw);
+    color: #fff;
+    text-align: center;
+    font-weight: 900;
+}
+.errorElement>p>span{
+    color: #0011ff;
+    text-decoration: none;
+}

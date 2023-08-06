@@ -1,0 +1,75 @@
+header{
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem 0;
+    postion: -webkit-sticky;
+    box-shadow:rgba(206, 201, 201, 0.4) 0px 2px 4px, rgba(106, 23, 23, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    top: 0;
+    z-index: 100;
+}
+.nav{
+    width: 95%;
+    margin: auto;
+}
+.navCh{
+    display:grid;
+    grid-template-columns: 8% 60%  32%;
+}
+.navMenu{
+    display: grid;
+    align-content: center;
+}
+.navUl{
+    display:grid;
+    grid-template-columns: repeat(4, 0.1fr);
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.account{
+    display: grid;
+place-content: end;
+  align-content: end;
+align-content: center;
+}
+
+
+.navUl>li>a{
+    text-decoration: none;
+    color: #fff;
+}
+a.active{
+    color: rgb(245, 25, 25) !important;
+    text-decoration: underline;
+}
+@media screen and (max-width: 768px){
+    .navCh{
+        grid-template-columns: 1fr;
+    }
+    .navCh>h1{
+        /* display: none; */
+        text-align: center;
+    }
+    .navMenu{
+        /* display: none; */
+        /* text-align: center; */
+    }
+    .account{
+        display: none;
+    }
+    .navUl{
+        display: flex;
+        justify-content: space-between;
+    }
+    .navUl>li>a{
+        font-size: 1rem;
+    }
+}
+    @media screen and (min-width: 769px) and (max-width : 900px){
+        .navUl{
+            grid-template-columns: repeat(4, 0.3fr);
+        }
+        .navCh{
+            grid-template-columns: 14% 50% 32%;
+        }
+    }

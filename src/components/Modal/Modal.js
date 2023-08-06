@@ -16,11 +16,11 @@ const Overlay = () => {
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } = useFormik({
       initialValues: {
-        ModalTest_Name: modalInfo.Test_name,
-        ModalTestType: modalInfo.Test_name,
-        ModalTester_email: modalInfo.Tester_email,
-        ModalTester_phone: modalInfo.Tester_phone,
-        ModalAlternate_mobile_no: modalInfo.Alternate_mobile_no,
+        ModalTest_Name: modalInfo?.Test_name,
+        ModalTestType: modalInfo?.Test_type,
+        ModalTester_email: modalInfo?.Tester_email,
+        ModalTester_phone: modalInfo?.Tester_phone,
+        ModalAlternate_mobile_no: modalInfo?.Alternate_mobile_no,
       },
       validationSchema: updateForm,
       
@@ -60,18 +60,13 @@ const Overlay = () => {
             };
         }
     }, [message]);
-//   const setUpdatedValues = () => {
-//     console.log(modalInfo);
-//     dispatch({ type: "updateValues", payload: modalInfo });
-//     dispatch({ type: "setModalOpen" });
-//   };
   const cancleUpdation = () => {
     dispatch({ type: "setModalOpen" });
   };
 
   return (
     <div className={`card ${classes.form}`}>
-      <h3>Edit</h3>
+      <h3>Update</h3>
       <div className={classes.warning}>
         {/* warning section */}
         {message && (
@@ -79,8 +74,8 @@ const Overlay = () => {
             className={`alert alert-${message.type} alert-dismissible fade show`}
             role="alert"
           >
-            <strong>{message.type}</strong>{" "}
-            {<message className="message">{message.message}</message>}
+            <strong>{message.type} ! </strong>{" "}
+            {<span className="message">{message.message}</span>}
 
             <button
               type="button"
@@ -108,7 +103,7 @@ const Overlay = () => {
             />
             {errors.ModalTest_Name && touched.ModalTest_Name ? <p className={classes.inputError}>{errors.ModalTest_Name}</p>:null}
           </div>
-          <div className={classes.values}>
+          <div className={classes.select}>
             <label className="form-label" htmlFor="modalSelect">
               Test type
             </label>
@@ -120,9 +115,11 @@ const Overlay = () => {
               className={classes.input}
               id="modalSelect"
             >
-              <option value="PHP">PHP</option>
-              <option value="NODE JS">NODE JS</option>
-              <option value="REACT JS">REACT JS</option>
+              {state.testTypeList.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -159,7 +156,7 @@ const Overlay = () => {
             {errors.ModalTester_phone && touched.ModalTester_phone ? <p className={classes.inputError}>{errors.ModalTester_phone}</p>:null}
           </div>
         </div>
-        <div className={classes.valParent}>
+        <div className={` w-100`}>
           <div className={classes.values}>
             <label htmlFor="AlterModalEmail" className="form-label">
               Alternate Mobile Nmber
@@ -176,7 +173,7 @@ const Overlay = () => {
             {errors.ModalAlternate_mobile_no && touched.ModalAlternate_mobile_no ? <p className={classes.inputError}>{errors.ModalAlternate_mobile_no}</p>:null}
           </div>
         </div>
-        <div className={classes.valParent}>
+        <div className={`${classes.valParent} align-items-center justify-content-evenly `}>
           <button type="submit" className={classes.updateBtn}>
             Update
           </button>

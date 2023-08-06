@@ -1,15 +1,35 @@
-.form{
+.bg{
+    position: relative;
+    padding: 10px;
+}
+body::before{
+    transition: all 0.3s ease-in-out;
+    background: url(../BG_img/Bg1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    content: "";
+    z-index: -1;
+    top: 0px;
+    opacity: 0.5;
+    border-radius:10px;
 
+    position: absolute;
+}
+.form{
     align-items: center;
     justify-content: center;
     width: 80%;
     margin: auto;
     height: 100%;
     padding: 1rem;
-    background-color: #fff;
+    background-color: #ffffffa6;
     border-radius: 1rem;
     box-shadow: 0 0 1rem rgba(0,0,0,0.2);
-    transition: all 0.3s ease-in-out;
+
+   
 }
 .form>input{
     width: 100%;
@@ -29,6 +49,7 @@
     display: flex;
     flex-direction: column;
     width: 45%;
+    height: 15vh;
 }
 .rowCh>label{
     color: gray;
@@ -58,11 +79,18 @@
     display: flex;
 
 }
+.testTypeInput{
+    /* width: 100%; */
+    padding: 5px;
+    margin: 0px 5px;
+    transition: all 1.3s ease-in-out;
+}
 .testAddBtn{
-    color: darkblue;
+    /* color: darkblue; */
 text-decoration: underline;
 padding: 5px;
 cursor: pointer;
+transition: all 0.3s ease-in-out;
 margin: 0px calc(0.5rem + 1vw) ;
 }
 .addTest{
@@ -71,16 +99,7 @@ margin: 0px calc(0.5rem + 1vw) ;
 .warning{
     height: 64px;
 }
-.errorWarning{
-    background-color: rgba(255, 0, 0, 0.382);
-    padding: calc(0.5rem + 1vw);
-    border: 2px solid rgba(255, 0, 0, 0.584);
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    margin: 0.5rem 0;
-    margin: 0;
-    font-size: 17px;
-}
+
 
 @media screen and (max-width:536px){
     .Row{

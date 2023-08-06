@@ -3,22 +3,23 @@ import classes from "./form.module.css";
 import { useContextReducer } from "../../Context/Context";
 import { useFormik } from "formik";
 import { FormdataSchema } from "../Schema";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 export default function Form() {
   const [state, dispatch] = useContextReducer();
   const [testType, setTestType] = useState("");
-  const [testTypeList, setTestTypeList] = useState([
-    "PHP",
-    "NODE JS",
-    "REACT JS",
-  ]);
+  // const [testTypeList, setTestTypeList] = useState([
+  //   "PHP",
+  //   "NODE JS",
+  //   "REACT JS",
+  // ]);
   const [addTestBtnCliked, setAddTestBtnCliked] = useState(false);
   const [isTestTypeListAdd, setTestTypeListAdd] = useState(false);
   const [warning, setWarning] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
   const addTestType = (val) => {
-    if (testTypeList.includes(val.target.value.toUpperCase())) {
-      console.log("testTypeList is wrong", testTypeList);
+    if (state.testTypeList.includes(val.target.value.toUpperCase())) {
+      console.log("testTypeList is wrong", state.testTypeList);
       setWarning({
         type: "warning",
         message: "test type is already exist",
@@ -46,7 +47,8 @@ export default function Form() {
         type: "success",
         message: "test type added successfully",
       });
-      setTestTypeList((testTypeList) => [...testTypeList, testType]);
+      // setTestTypeList((testTypeList) => [...testTypeList, testType]);
+      dispatch({ type: "addTestType", payload: testType });
       setTestType("");
     }
     setAddTestBtnCliked(true);
@@ -99,6 +101,10 @@ export default function Form() {
             lastUpdationDate: "",
           },
         });
+        setWarning({
+          type: "success",
+          message: "Data added successfully",
+        });
         values.Test_name = "";
         values.Test_type = "PHP";
         values.Tester_email = "";
@@ -108,12 +114,12 @@ export default function Form() {
     });
 
   return (
-    <div>
+    <div className={` mt-5 ${classes.bg}`}>
       <form className={classes.form} onSubmit={handleSubmit}>
         <h1>Php Test Mast</h1>
         <div className={classes.warning}>{warning && <ErrorWarning />}</div>
         <div className={classes.Row}>
-          <div className={classes.rowCh}>
+          <div className={classes.rowCh}> 
             <label htmlFor="test_name">Test Name *</label>
             <input
               name="Test_name"
@@ -122,7 +128,7 @@ export default function Form() {
               onBlur={handleBlur}
               type="text"
               id="test_name"
-              className={classes.input}
+              className={`${classes.input} form-control`}
             />
             {errors.Test_name && touched.Test_name ? (
               <p className={classes.inputError}>{errors.Test_name}</p>
@@ -137,8 +143,9 @@ export default function Form() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 id="test_type"
+                className="rounded"
               >
-                {testTypeList.map((testType, i) => (
+                {state.testTypeList.map((testType, i) => (
                   <option key={i} value={testType}>
                     {" "}
                     {testType}{" "}
@@ -147,21 +154,21 @@ export default function Form() {
               </select>
               {isTestTypeListAdd && (
                 <input
-                  className={classes.addTest}
                   type="text"
                   placeholder="Add test type"
                   onChange={addTestType}
                   value={testType}
+                  className={classes.testTypeInput}
                 />
               )}
               <div>
                 <button
                   onClick={addTestTypeBtn}
-                  className={classes.testAddBtn}
+                  className={`${classes.testAddBtn} btn btn-light`}
                   disabled={disabled}
                 >
                   {" "}
-                  Add test type
+                  Add test type <AddBoxIcon />{" "}
                 </button>
               </div>
             </div>
@@ -178,6 +185,7 @@ export default function Form() {
               id="tester_email"
               type="email"
               value={values.Tester_email}
+              className={`${classes.input} form-control`}
             />
             {errors.Tester_email && touched.Tester_email ? (
               <p className={classes.inputError}>{errors.Tester_email}</p>
@@ -193,6 +201,7 @@ export default function Form() {
               title="Please enter valid phone no"
               id="tester_phone"
               type="tel"
+              className={`${classes.input} form-control`}
             />
             {errors.Tester_phone && touched.Tester_phone ? (
               <p className={classes.inputError}>{errors.Tester_phone}</p>
@@ -209,6 +218,7 @@ export default function Form() {
               value={values.Alternate_mobile_no}
               type="tel"
               id="Alternate_mobile_no"
+              className={`${classes.input} form-control`}
             />
             {errors.Alternate_mobile_no && touched.Alternate_mobile_no ? (
               <p className={classes.inputError}>{errors.Alternate_mobile_no}</p>

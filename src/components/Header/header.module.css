@@ -13,7 +13,7 @@ header{
 }
 .navCh{
     display:grid;
-    grid-template-columns: 8% 60%  32%;
+    grid-template-columns:  10% 65% 25%;
 }
 .navMenu{
     display: grid;
@@ -21,7 +21,7 @@ header{
 }
 .navUl{
     display:grid;
-    grid-template-columns: repeat(4, 0.1fr);
+    grid-template-columns: repeat(10, 3.1fr);
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -42,21 +42,24 @@ a.active{
     color: rgb(245, 25, 25) !important;
     text-decoration: underline;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width:536px) {
     .navCh{
-        grid-template-columns: 1fr;
+        grid-template-columns: 29% 68% auto;
+    }
+    .navUl{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+}
+@media screen and (min-width:537px) and (max-width: 768px){
+    .navCh{
+        grid-template-columns: 20% 20% auto;
     }
     .navCh>h1{
         /* display: none; */
         text-align: center;
     }
-    .navMenu{
-        /* display: none; */
-        /* text-align: center; */
-    }
-    .account{
-        display: none;
-    }
+
     .navUl{
         display: flex;
         justify-content: space-between;

@@ -8,29 +8,28 @@ export default function Header() {
     <header>
         <nav className={classes.nav}>
             <div className={classes.navCh}>
+                <Link to="/" className={`${classes.logo} text-decoration-none`}>
                 <h1>
-                    <span className='bg-warning rounded-3 text-dark fw-bold fs-2'>IMDb</span>
+                    <span className='bg-warning rounded-3 text-dark fw-bold py-2 px-1 cousor- fs-4'>Test App</span>
                 </h1>
+                </Link>
                 <div className={classes.navMenu}>
                     <ul className={classes.navUl}>
                         <li>
                             <NavLink className={({isActive})=>isActive?classes.active:undefined} to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`/movieList/popular` } className={({isActive})=>isActive?classes.active:undefined}>Popular</NavLink>
+                            <NavLink to={`/dataTable` } className={({isActive})=>isActive?classes.active:undefined}>Data Table</NavLink>
                         </li>
                         <li>
-                            <NavLink className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/top_rated">Top Rated</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={({isActive})=>isActive?classes.active:undefined}  to="/movieList/upcoming">Upcoming</NavLink>
+                            <NavLink to={`/testType` } className={({isActive})=>isActive?classes.active:undefined}>Test Type</NavLink>
                         </li>
                     </ul>
                 </div>
                 <div className={classes.account}>
-                    <AccountCircleIcon sx={{
-                        fontSize: 40,
-                    }} />
+                    <AccountCircleIcon 
+                       sx={{fontSize: { xs: 20, sm: 30, md: 25, lg: 40 } }}
+                    />
                 </div>
             </div>
         </nav>

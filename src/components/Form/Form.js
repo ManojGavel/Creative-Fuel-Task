@@ -225,7 +225,7 @@ export default function Form() {
         </div>
         <div>
           <button type="submit" disabled={!errors} className={classes.button}>
-            Submmit
+            Submit
           </button>
         </div>
       </form>

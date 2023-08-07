@@ -57,7 +57,6 @@ export default function DataTable() {
                   <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
-              {/* {row.testType === "PHP" ? "green" : row.testType === "Node Js" ? "yellow" : "orange"}> */}
               <TableBody>
                 {state.tableValues?.map((row, i) => {
                   return (
@@ -66,7 +65,7 @@ export default function DataTable() {
                       sx={{
                         background:
                           row.Test_type === "PHP"
-                            ? "green"
+                            ? '#4caf50'
                             : row.Test_type === "NODE JS"
                             ? "#fbc02d"
                             : "#ff6d00",

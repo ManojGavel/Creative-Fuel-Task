@@ -38,6 +38,7 @@ export default function TestType() {
       },
     },
   });
+  
   return (
     <div className='w-50 m-auto mt-5'>
       <ThemeProvider theme={darkTheme}>
@@ -57,12 +58,13 @@ export default function TestType() {
                     sx={{
                       background:
                         row === "PHP"
-                          ? "green"
+                          ? "#4caf50"
                           : row === "NODE JS"
                           ? "#fbc02d"
                           : "#ff6d00",
                     }}
-                    hover
+                    hover={true}
+
                     tabIndex={-1}
                   >
                     <TableCell>{i + 1}</TableCell>

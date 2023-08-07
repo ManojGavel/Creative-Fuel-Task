@@ -1,70 +1,23 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Overview:
+I have developed a web application using cutting-edge technologies such as React.js, Formik, Material UI, Bootstrap, Yup, and React Router. The main objective of this project is to demonstrate my skills in creating a dynamic and user-friendly web form, coupled with tables that fetch and display data in real-time.
+Components Used:
+1.	Test Form: The Test Form is the primary user interface of the application, developed using React.js and Material UI
+2.	. Formik is utilized to handle form validation, field tracking, and error handling, ensuring that the data entered is accurate and valid. The integration of Yup as a validation schema helps in validating the form data based on predefined rules, ensuring data integrity.
+3.	Test Table 1 (Data Fetch Table): Test Table 1 is developed using React.js and Material UI, acting as a data presentation component. It dynamically fetches and displays the data submitted through the Test Form. The data is managed in a structured manner to ensure easy access and seamless display. React Router is utilized to navigate between different views, allowing users to access the Test Form and the two tables effortlessly.
+4.	Test Table 2 (Test Type Table): Test Table 2 is another component created with React.js and Material UI. Unlike Test Table 1, this table serves to fetch and display the test types associated with the data provided in the Test Form. It dynamically updates based on the user's input in the form, providing relevant test types as options.
+Technologies Used:
+•	React.js: 
+•	Formik: 
+•	Material UI: 
+•	Bootstrap: 
+•	Yup: 
+•	React Router:
+Project Flow:
+1.	Users access the web application, which loads the initial view with the Test Form.
+2.	The Test Form includes input fields, and Formik ensures that the data entered adheres to the validation rules defined using Yup.
+3.	Upon successful form submission, the data is stored in a structured format, making it easily accessible.
+4.	Test Table 1 automatically fetches and displays the data from the Test Form in a tabular format, providing users with a clear overview of their input.
+5.	Based on the data provided in the Test Form, Test Table 2 dynamically updates and presents relevant test types associated with the input.
+6.	Users can navigate between the Test Form and the two tables using the navigation capabilities provided by React Router.
+Conclusion:
+This project showcases my proficiency in using modern front-end technologies like React.js, Formik, Material UI, Bootstrap, Yup, and React Router to create an interactive and data-driven web application. The Test Form, along with the two tables, demonstrates my ability to manage data, perform real-time updates, and deliver a seamless user experience. The combination of these technologies ensures a responsive, visually appealing, and user-friendly application, making it an excellent fit for a company seeking skilled and innovative developers.

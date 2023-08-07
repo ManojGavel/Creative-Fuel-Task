@@ -2,7 +2,7 @@
     position: relative;
     padding: 10px;
 }
-body::before{
+/* body::before{
     transition: all 0.3s ease-in-out;
     background: url(../BG_img/Bg1.jpg);
     background-size: cover;
@@ -17,7 +17,7 @@ body::before{
     border-radius:10px;
 
     position: absolute;
-}
+} */
 .form{
     align-items: center;
     justify-content: center;
@@ -27,7 +27,9 @@ body::before{
     padding: 1rem;
     background-color: #ffffffa6;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+    /* background: rgb(131,58,180); */
+    /* background: radial-gradient(circle at 33% 100%, #ffc648 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf); */
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 
    
 }
@@ -49,10 +51,10 @@ body::before{
     display: flex;
     flex-direction: column;
     width: 45%;
-    height: 15vh;
+    height: 17vh;
 }
 .rowCh>label{
-    color: gray;
+    color: rgb(24, 14, 14);
     margin-bottom: calc(0.5rem - 1px);
 }
 .rowCh>input{
@@ -136,5 +138,5 @@ margin: 0px calc(0.5rem + 1vw) ;
     }
 }
 .inputError{
-    color: red;
+    color: #e81111;
 }

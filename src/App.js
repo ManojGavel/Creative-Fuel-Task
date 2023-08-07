@@ -28,10 +28,7 @@ function App() {
       element:<TestType/>
     }]
   }])
-  useEffect(() => {
-    console.log(state.tableValues);
-  }, [state.tableValues])
-  
+
   return (
     <div className="App">
       <RouterProvider router={router}/>

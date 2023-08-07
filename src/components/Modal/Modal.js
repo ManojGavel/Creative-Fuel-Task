@@ -30,7 +30,6 @@ const Overlay = () => {
                 type: "success",
                 message: "form submitted successfully",
                 })
-            console.log(values);
             values.ModalTest_Name = "";
             values.ModalTestType = "PHP";
             values.ModalTester_email = "";
@@ -39,16 +38,7 @@ const Overlay = () => {
         },
         
         });
-        console.log(values);
 
-    // const setWarning = (type, message) => {
-    //   setMessage({ type, message });
-    //   setTimeout(() => {
-    //     dispatch({ type: "setModalOpen" });
-    //     setMessage(null);
-    //   }, 3000);
-
-    // };
     useEffect(() => {
         if (message) {
             setTimeout(() => {
@@ -60,6 +50,7 @@ const Overlay = () => {
             };
         }
     }, [message]);
+
   const cancleUpdation = () => {
     dispatch({ type: "setModalOpen" });
   };

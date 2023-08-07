@@ -7,11 +7,6 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 export default function Form() {
   const [state, dispatch] = useContextReducer();
   const [testType, setTestType] = useState("");
-  // const [testTypeList, setTestTypeList] = useState([
-  //   "PHP",
-  //   "NODE JS",
-  //   "REACT JS",
-  // ]);
   const [addTestBtnCliked, setAddTestBtnCliked] = useState(false);
   const [isTestTypeListAdd, setTestTypeListAdd] = useState(false);
   const [warning, setWarning] = useState(false);
@@ -19,7 +14,6 @@ export default function Form() {
 
   const addTestType = (val) => {
     if (state.testTypeList.includes(val.target.value.toUpperCase())) {
-      console.log("testTypeList is wrong", state.testTypeList);
       setWarning({
         type: "warning",
         message: "test type is already exist",
@@ -31,11 +25,17 @@ export default function Form() {
     }
   };
 
+
   const addTestTypeBtn = (e) => {
     e.preventDefault();
     setTestTypeListAdd((testType) => !testType);
     if (testType.trim() === "") {
-      {
+      if (state.testTypeList.includes(testType.toUpperCase())) {
+        setWarning({
+          type: "warning",
+          message: "test type is already exist",
+        });
+      } else {
         addTestBtnCliked &&
           setWarning({
             type: "warning",
@@ -47,7 +47,6 @@ export default function Form() {
         type: "success",
         message: "test type added successfully",
       });
-      // setTestTypeList((testTypeList) => [...testTypeList, testType]);
       dispatch({ type: "addTestType", payload: testType });
       setTestType("");
     }
@@ -116,7 +115,7 @@ export default function Form() {
   return (
     <div className={` mt-5 ${classes.bg}`}>
       <form className={classes.form} onSubmit={handleSubmit}>
-        <h1>Php Test Mast</h1>
+        <h1 className="h1 text-center text-secondary"> Test Form</h1>
         <div className={classes.warning}>{warning && <ErrorWarning />}</div>
         <div className={classes.Row}>
           <div className={classes.rowCh}> 
@@ -164,17 +163,16 @@ export default function Form() {
               <div>
                 <button
                   onClick={addTestTypeBtn}
-                  className={`${classes.testAddBtn} btn btn-light`}
+                  className={`${classes.testAddBtn} btn btn-light btn-sm`}
                   disabled={disabled}
                 >
                   {" "}
-                  Add test type <AddBoxIcon />{" "}
+                  Add test type <AddBoxIcon sx={{fontSize:{xs:20,sm:20,lg:20}}} />{" "}
                 </button>
               </div>
             </div>
           </div>
         </div>
-        {/* form for add new test type will add here */}
         <div className={classes.Row}>
           <div className={classes.rowCh}>
             <label htmlFor="tester_email">Tester email *</label>
@@ -226,7 +224,7 @@ export default function Form() {
           </div>
         </div>
         <div>
-          <button disabled={!errors} className={classes.button}>
+          <button type="submit" disabled={!errors} className={classes.button}>
             Submmit
           </button>
         </div>
